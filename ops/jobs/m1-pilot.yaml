@@ -1,0 +1,104 @@
+# M1 pilot — 2 h Stage A then 2 h Stage B on one pod.
+#
+# Launchable once gate M1 is approved: ops/gpu.py refuses without an approval row and a
+# `planned` burn-tracker row, so this file alone cannot spend anything.
+#
+# Image verified live 5 Nov 2026 with ops.runpod_client.image_exists. The template's
+# `runpod/pytorch:2.4.0-py3.11-cuda12.4.1` returns **False** — it does not exist — which
+# is why every tag here is checked rather than copied. CUDA 12.8 runs fine on the 13.2
+# host drivers currently in the fleet (newer driver, older runtime).
+#
+# Switched off `runpod/pytorch:2.8.0-...-cudnn-devel-ubuntu22.04` (~8 GB) on 5 Nov. Same
+# torch and same CUDA, but the `-devel` toolchain and cudnn-devel layers buy nothing: we
+# never compile CUDA, and torch ships its own runtime. ~3.5 GB instead.
+#
+# The evidence for caring (D-047): our code has never reached breadcrumb 01 on any pod.
+# Most of the 14 pods on 3 Nov died in 2-19 s, which is scarcity and nothing to do with
+# the image — but every pod that actually SCHEDULED (1m44s, 2m15s, 3m16s) died before
+# our script ran, and the pull is the best remaining explanation for that subset.
+#
+# Disk: 40 GB, after a 20 GB experiment cost a run. The reasoning for 20 was that the
+# job "needs ~15 GB"; that was wrong in a way worth writing down. pilot.py kept every
+# checkpoint it wrote, so usage grew with training time rather than sitting at a fixed
+# ~15 GB, and m1-pilot-10 died at step 2750 with "No space left on device" after 26
+# minutes of real training. pilot.py now deletes each local copy once the Hub has it,
+# which is the actual fix; 40 GB is the margin on top of it, not a substitute for it.
+run_id: m1-pilot-11
+gate: M1
+provider: runpod
+image: pytorch/pytorch:2.8.0-cuda12.8-cudnn9-runtime
+disk_gb: 40
+max_hours: 1.0
+
+# Exposure ceiling for this run, and — divided by max_hours — the per-hour ceiling the
+# launcher selects against: ₹144 / 4 h = ₹36/h ≈ $0.41/h. Well under the gate's ₹300:
+# the honest exposure of 4 h at ~$0.33 is ~₹117, and claiming the whole gate for one run
+# would be dishonest arithmetic.
+#
+# Why 144 and not 150: ₹5.01 of the M1 authorisation is already committed by the 27 Oct
+# self-delete probe, and the launch guard requires the total to stay strictly under the
+# authorised ₹150. It refused ₹150 and then ₹145 before I got this right — the guard
+# caught the arithmetic, not me. At the chosen rate ₹144 still buys 4.96 h, so this
+# ceiling never binds before the 4 h deadline does.
+max_cost_inr: 60.0
+
+# Order is preference, not price (D-045). 48 GB first because it removes the need for
+# 4-bit quantisation entirely, so the pilot resembles the main run instead of the smoke
+# test. Then the 24 GB cards, which all fit with gradient checkpointing at batch 1.
+#
+# Measured over about two hours on 3 Nov, which is the whole reason this is a list:
+#   RTX 4090   $0.34  24 GB  — what the runbook prices every gate against. OUT OF STOCK
+#                              on both clouds when first checked.
+#   RTX A6000  $0.33  48 GB  — appeared, then was gone within the hour.
+#   RTX 3090   $0.22  24 GB  — appeared after that.
+# Launch with --wait-for-stock so a stock-out costs a wait rather than a day.
+# Re-quoted 5 Nov from get-capacity. The RTX 3090 is gone: stockStatus "unavailable"
+# on every CUDA version, so it was costing a create attempt per pass and returning
+# HTTP 500 every time. A40 leads because the console's Available tab shows 9 of them
+# at $0.59 -- the most of anything on the board -- and it is SECURE-only
+# (communityCloud: false), which is why this spec stays on SECURE.
+gpu_candidates:
+  - NVIDIA A40
+  - NVIDIA RTX A6000
+  - NVIDIA GeForce RTX 4090
+  - NVIDIA L40S
+# Last resort, and the price the gate was originally costed against.
+gpu_type: NVIDIA GeForce RTX 4090
+cloud_type: SECURE
+
+# Self-contained bootstrap. The job script lives IN the code repo, so pointing the
+# command straight at /workspace/code/jobs/m1_pilot.sh was a chicken-and-egg: bash
+# could not find a file that the script itself downloads. Pods died ~19 s in, which is
+# container-start plus an instant "No such file or directory", and the wrapper then
+# correctly self-destroyed. Fetch first, then run.
+# `pytorch/pytorch` is conda-based and puts python and pip in /opt/conda/bin, which a
+# `bash -lc` login shell does not reliably have on PATH. A missing `pip` here is the
+# same class of failure that killed attempts 1-4 -- an instant "command not found" and
+# a pod that dies before it does anything -- so PATH is set rather than assumed. The
+# `command -v` line turns a wrong guess into exit 78 instead of a confusing failure
+# deeper in, and the directory is harmless if it does not exist.
+#
+# It carries NO quotes of its own, deliberately. The first version of this line said
+# `|| { echo 'FATAL: no python on PATH'; exit 78; }` and broke m1-pilot-7 on the pad:
+# ops/wrapper.py nests the command inside `bash -lc '...'`, and a backslash does not
+# escape a single quote inside single quotes, so bash ended the string early and the
+# whole line became `syntax error near unexpected token }`. Verified by running the
+# generated text, not by reading it. Anything added here must survive that nesting.
+command: >-
+  bash -lc "set -e;
+  export PATH=/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;
+  export STAGE_A_SECONDS=1200; export STAGE_B_SECONDS=1200;
+  command -v python >/dev/null || exit 78;
+  python -m pip install -q -U huggingface_hub;
+  python -c \"from huggingface_hub import snapshot_download;
+  snapshot_download('Dhevenddra/geetha-code-private', repo_type='model',
+  local_dir='/workspace/code')\";
+  bash /workspace/code/jobs/m1_pilot.sh"
+
+# Codes, not audio (D-037): 118 MB instead of 88 GB, and the pod never decodes or
+# resamples anything, so paid GPU time goes on gradient steps.
+data_repos:
+  - Dhevenddra/geetha-tts-codes-stagea-private
+  - Dhevenddra/geetha-tts-codes-stageb-private
+checkpoint_repo: Dhevenddra/geetha-ckpt-private
+wandb_project: geetha

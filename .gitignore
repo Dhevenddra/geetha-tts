@@ -1,0 +1,39 @@
+# Secrets — never committed. The real file lives at E:\Geetha\.secrets\geetha.env
+.secrets/
+*.env
+!*.env.template
+kaggle.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Data, audio and model artefacts never live in git
+*.wav
+*.flac
+*.mp3
+*.m4a
+*.npy
+*.parquet
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+
+# Local run output
+runs/
+outputs/
+wandb/
+logs/*.log
+
+# Stray wheels from an ad-hoc `pip download` landing in the repo root.
+# One of these (torch, 118 MB) exceeded GitHub's 100 MB limit and broke a push.
+*.whl
+*.tar.gz

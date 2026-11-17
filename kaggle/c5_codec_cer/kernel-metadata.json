@@ -1,0 +1,18 @@
+{
+  "id": "dhevenddra/geetha-c5-codec-cer",
+  "title": "geetha-c5-codec-cer",
+  "code_file": "c5_codec_cer.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "dhevenddra/geetha-m2-breath-control",
+  "title": "geetha-m2-breath-control",
+  "code_file": "m2_breath_control.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "dhevenddra/geetha-m3-bench-ours",
+  "title": "geetha-m3-bench-ours",
+  "code_file": "m3_bench_ours.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

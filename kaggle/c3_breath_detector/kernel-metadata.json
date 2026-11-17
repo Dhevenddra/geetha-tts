@@ -1,0 +1,19 @@
+{
+  "id": "dhevenddra/geetha-c3-breath-detector",
+  "title": "geetha-c3-breath-detector",
+  "code_file": "c3_breath_detector.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets",
+    "dhevenddra/geetha-breath-calibration"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

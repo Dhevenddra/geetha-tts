@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+# Shell scripts run on Linux pods. A CRLF here is not cosmetic: bash reads the  as
+# part of the token and the script dies with "set: -: invalid option" and
+# "syntax error near unexpected token $'{'". That is what killed m1-pilot-9 and,
+# almost certainly, every earlier pod that got far enough to run its job script.
+*.sh text eol=lf

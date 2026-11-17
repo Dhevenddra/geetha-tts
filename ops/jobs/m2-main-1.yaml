@@ -1,0 +1,53 @@
+# M2 main run — Stage A at full length, then Stage B, on one pod (D-051).
+#
+# What the money buys: 9.0 h of Stage A + 3.0 h of Stage B training, plus about half an
+# hour of setup, held-out scoring and checkpoint pushes, under a hard 13 h deadline.
+#
+# Arithmetic, at the price actually paid on 5-6 Nov (A40 SECURE, $0.59/h, INR 88/USD):
+#   13 h x $0.59 x 88 = INR 675 if the pod runs to its deadline (it should stop ~12.5 h).
+#   Ceiling INR 900 = that plus a 33% margin, and under gate M2's INR 1,000.
+#   Per-hour ceiling the launcher selects against: 900 / 13 = INR 69.2/h = $0.79/h.
+#
+# Both stages stop on whichever comes first, their hours or their epochs (2 for A, 1 for
+# B), so a faster card finishes early and self-destroys early. A slower one finishes its
+# learning-rate decay on the clock with fewer epochs behind it. Either way the deadline
+# is never what ends training.
+#
+# RECOVERY: if the pod dies, launch a copy of this file as m2-main-2 (same command).
+# RUN_NAME=m2-main is what the trainer resumes from, not the run_id.
+run_id: m2-main-1
+gate: M2
+provider: runpod
+image: pytorch/pytorch:2.8.0-cuda12.8-cudnn9-runtime
+disk_gb: 40
+max_hours: 13.0
+max_cost_inr: 900.0
+
+# 48 GB first: the trainer runs 6,000-token batches without gradient checkpointing there
+# (about 30% faster). On a 24 GB card it hits one out-of-memory error, switches
+# checkpointing on by itself and carries on, so the 4090 is a real fallback, not a trap.
+gpu_candidates:
+  - NVIDIA A40
+  - NVIDIA RTX A6000
+  - NVIDIA GeForce RTX 4090
+gpu_type: NVIDIA GeForce RTX 4090
+cloud_type: SECURE
+
+# No quotes of its own beyond the python -c string: ops/wrapper.py nests this inside
+# `bash -lc '...'` via shlex.quote (see m1-pilot.yaml for the history).
+command: >-
+  bash -lc "set -e;
+  export PATH=/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;
+  export RUN_NAME=m2-main;
+  command -v python >/dev/null || exit 78;
+  python -m pip install -q -U huggingface_hub;
+  python -c \"from huggingface_hub import snapshot_download;
+  snapshot_download('Dhevenddra/geetha-code-private', repo_type='model',
+  local_dir='/workspace/code')\";
+  bash /workspace/code/jobs/m2_main.sh"
+
+data_repos:
+  - Dhevenddra/geetha-tts-codes-stagea-private
+  - Dhevenddra/geetha-tts-codes-stageb-private
+checkpoint_repo: Dhevenddra/geetha-ckpt-private
+wandb_project: geetha

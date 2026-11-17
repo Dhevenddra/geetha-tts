@@ -1,0 +1,156 @@
+kind	id	text	gloss	intents
+# Directability-Ta v1 source, authored for task B4. Reviewed and approved by the operator
+# before the eval vault is frozen; `operator_verdict` is filled in during that review.
+#
+# THREE KINDS:
+#  carrier  - emotion-NEUTRAL sentences. Each is rendered under every emotion label, so
+#             any difference in delivery is attributable to the tag and not to the words.
+#             Content must not imply a feeling: no good news, no bad news, no insult.
+#  emotional - sentences whose CONTENT implies a feeling, rendered with NO tag. Tests
+#             D-004 "emotion by default": untagged text must still sound right.
+#  probe    - a short Tamil word or phrase whose INTENT changes with delivery. Listeners
+#             hear a reading and pick the intent; chance is 1/len(intents). This
+#             generalises the "Paathukalaam" example from runbook s6.
+#
+# Tamil was drafted with AI assistance and needs the operator's sign-off; a sentence that
+# reads oddly to a Tamil speaker makes the whole measurement suspect.
+carrier	c01	நாளைக்கு காலையில ஒரு மீட்டிங் இருக்கு.	There is a meeting tomorrow morning.
+carrier	c02	அந்த புத்தகம் மேஜை மேல இருக்கு.	That book is on the table.
+carrier	c03	பஸ் ஸ்டாப் இந்த தெருவுல கடைசியில இருக்கு.	The bus stop is at the end of this street.
+carrier	c04	நான் நாளைக்கு சென்னைக்கு போறேன்.	I am going to Chennai tomorrow.
+carrier	c05	இந்த கடை காலையில ஒன்பது மணிக்கு திறக்கும்.	This shop opens at nine in the morning.
+carrier	c06	அவங்க ரெண்டு வருஷம் அங்க வேலை செஞ்சாங்க.	They worked there for two years.
+carrier	c07	மழை நேத்து ராத்திரி நின்னுடுச்சு.	The rain stopped last night.
+carrier	c08	இந்த ஃபைல்ல மூணு பேஜ் இருக்கு.	There are three pages in this file.
+carrier	c09	அவன் வீட்டுக்கு நடந்தே போனான்.	He walked home.
+carrier	c10	டிக்கெட் ஆன்லைன்ல புக் பண்ணலாம்.	The ticket can be booked online.
+carrier	c11	அந்த படம் ரெண்டு மணி நேரம் ஓடும்.	That film runs for two hours.
+carrier	c12	சாவி டேபிள் டிராவர்ல இருக்கு.	The key is in the table drawer.
+carrier	c13	இன்னைக்கு வியாழக்கிழமை.	Today is Thursday.
+carrier	c14	அவங்க வீடு ஸ்கூல் பக்கத்துல இருக்கு.	Their house is near the school.
+carrier	c15	நாளைக்கு ரிசல்ட் வரும்.	The result will come tomorrow.
+carrier	c16	இந்த ரோட்டுல லைட் இல்ல.	There is no light on this road.
+carrier	c17	அவன் காலையில ஒரு டம்ளர் பால் குடிப்பான்.	He drinks a glass of milk in the morning.
+carrier	c18	கூட்டம் நாலு மணிக்கு ஆரம்பிக்கும்.	The gathering starts at four.
+carrier	c19	அந்த நம்பர் எனக்கு தெரியும்.	I know that number.
+carrier	c20	இது ரெண்டாவது மாடி.	This is the second floor.
+carrier	c21	அவங்க அப்பா ஒரு டீச்சர்.	Their father is a teacher.
+carrier	c22	நான் அந்த மெயில் அனுப்பிட்டேன்.	I have sent that mail.
+carrier	c23	இந்த வாரம் லீவ் இல்ல.	There is no holiday this week.
+carrier	c24	கார் வெளியில நிக்குது.	The car is parked outside.
+carrier	c25	அவன் பேரு ராஜா.	His name is Raja.
+carrier	c26	இந்த ஃபோன் நம்பர் மாறிடுச்சு.	This phone number has changed.
+carrier	c27	நாங்க அங்க ஒரு வாரம் இருந்தோம்.	We stayed there for a week.
+carrier	c28	அந்த ஆஃபீஸ் ஞாயிற்றுக்கிழமை மூடியிருக்கும்.	That office will be closed on Sunday.
+carrier	c29	டீ டேபிள் மேல இருக்கு.	The tea is on the table.
+carrier	c30	இந்த ட்ரெயின் பத்து நிமிஷம் லேட்.	This train is ten minutes late.
+carrier	c31	அவங்க நேத்து வந்தாங்க.	They came yesterday.
+carrier	c32	இந்த வேலை நாளைக்கு முடியும்.	This work will finish tomorrow.
+carrier	c33	அந்த பெட்டி கனமா இருக்கு.	That box is heavy.
+carrier	c34	நான் அந்த ஃபார்ம் ஃபில் பண்ணிட்டேன்.	I have filled in that form.
+carrier	c35	இந்த ஏரியால நெட்வொர்க் கம்மியா இருக்கு.	The network is weak in this area.
+carrier	c36	அவன் பஸ்ல வந்தான்.	He came by bus.
+carrier	c37	இந்த மாசம் முப்பது நாள் இருக்கு.	This month has thirty days.
+carrier	c38	அந்த கடைக்காரர் காலையில வருவாரு.	That shopkeeper comes in the morning.
+carrier	c39	நாளைக்கு எனக்கு ஒரு அப்பாயின்ட்மென்ட் இருக்கு.	I have an appointment tomorrow.
+carrier	c40	இந்த லிஸ்ட்ல அவங்க பேரு இல்ல.	Their name is not on this list.
+emotional	e01	ரொம்ப வருஷம் கழிச்சு உன்னை பார்க்கறேன், எப்படி இருக்க?	Seeing you after many years — how are you?
+emotional	e02	நான் ரொம்ப நாளா இதுக்காக காத்துட்டு இருந்தேன், கடைசியா ஆயிடுச்சு!	I waited so long for this, and finally it has happened!
+emotional	e03	அவங்களுக்கு வேலை கிடைச்சுடுச்சு, வீட்ல எல்லாரும் சந்தோஷமா இருக்காங்க.	They got the job; everyone at home is happy.
+emotional	e04	என் பொண்ணு ஃபர்ஸ்ட் மார்க் எடுத்துருக்கா.	My daughter has come first.
+emotional	e05	இன்னைக்கு என் வாழ்க்கையில ரொம்ப நல்ல நாள்.	Today is a very good day in my life.
+emotional	e06	நீ வந்துட்ட, இப்ப எல்லாம் சரியாகிடும்.	You have come; now everything will be all right.
+emotional	e07	எனக்கு இப்ப ரொம்ப நிம்மதியா இருக்கு.	I feel very relieved now.
+emotional	e08	இந்த செய்தி கேட்டு எனக்கு அழுகையே வந்துடுச்சு, சந்தோஷத்துல.	Hearing this news brought tears — of joy.
+emotional	e09	நாங்க ரொம்ப நாளுக்கு அப்புறம் எல்லாரும் ஒண்ணா சேர்ந்தோம்.	After a long time we all came together.
+emotional	e10	உன்னை பத்தி நான் ரொம்ப பெருமையா நினைக்கிறேன்.	I think of you with great pride.
+emotional	e11	அவரு போயிட்டாரு, நேத்து ராத்திரி.	He passed away, last night.
+emotional	e12	இந்த வீட்ட விட்டு போகணும்னு நினைச்சாலே கஷ்டமா இருக்கு.	Even the thought of leaving this house is painful.
+emotional	e13	எனக்கு இப்ப யாரும் இல்ல.	I have no one now.
+emotional	e14	அவ என்கிட்ட ஒரு வார்த்தை கூட சொல்லாம போயிட்டா.	She left without saying a single word to me.
+emotional	e15	நான் எவ்ளோ முயற்சி பண்ணாலும் முடியல.	However much I try, it does not work out.
+emotional	e16	அந்த நாள்ல திரும்ப போக முடியாது, அது தான் கஷ்டம்.	We cannot go back to those days; that is the hard part.
+emotional	e17	ரொம்ப நாள் கழிச்சு அந்த ஃபோட்டோ பார்த்தேன், மனசு கனமா ஆயிடுச்சு.	I saw that photo after a long time; my heart grew heavy.
+emotional	e18	அவங்க என்னை நம்பினாங்க, நான் அதை காப்பாத்தல.	They trusted me, and I did not keep it.
+emotional	e19	எனக்கு இந்த ஊர்ல ஒரு இடமும் இல்லாம போயிடுச்சு.	I no longer have any place in this town.
+emotional	e20	நான் தனியா உட்கார்ந்து நெறைய நேரம் யோசிச்சேன்.	I sat alone and thought for a long time.
+emotional	e21	எத்தன தடவ சொன்னேன், நீ கேட்கவே மாட்டியா?	How many times have I said it — will you not listen?
+emotional	e22	இது எப்படி நடந்ததுன்னு எனக்கு பதில் வேணும், இப்பவே.	I want an answer for how this happened, right now.
+emotional	e23	என் பொறுமைக்கும் ஒரு அளவு இருக்கு.	There is a limit to my patience too.
+emotional	e24	நீங்க செஞ்சது ரொம்ப தப்பு, அதை ஏத்துக்கவே மாட்டீங்களா?	What you did is very wrong — will you not even accept it?
+emotional	e25	இன்னொரு தடவ இப்படி பேசுனா நான் பேசவே மாட்டேன்.	If you speak like this once more, I will not speak at all.
+emotional	e26	எனக்கு இதுல எந்த சம்பந்தமும் இல்ல, எதுக்கு என்னை இழுக்குறீங்க?	I have nothing to do with this — why drag me in?
+emotional	e27	இந்த மாதிரி ஒரு வேலைய நான் எதிர்பார்க்கவே இல்ல உங்ககிட்ட இருந்து.	I never expected this kind of behaviour from you.
+emotional	e28	அந்த சத்தம் என்ன? யாரோ உள்ள இருக்காங்க.	What is that sound? Someone is inside.
+emotional	e29	ஃபோன் எடுக்க மாட்டேங்கறாங்க, எனக்கு பயமா இருக்கு.	They are not picking up the phone; I am frightened.
+emotional	e30	இருட்டுல அந்த வழியா போக எனக்கு தைரியம் இல்ல.	I do not have the courage to go that way in the dark.
+emotional	e31	ரிப்போர்ட் வர்ற வரைக்கும் எனக்கு தூக்கமே வரல.	Until the report comes I cannot sleep at all.
+emotional	e32	அவன் இன்னும் வீட்டுக்கு வரல, ராத்திரி பதினொன்னு ஆயிடுச்சு.	He has still not come home; it is eleven at night.
+emotional	e33	அடடா, நீ எப்ப வந்த? எனக்கு தெரியவே இல்ல!	Oh! When did you come? I had no idea!
+emotional	e34	இதை நான் கனவுலயும் நினைக்கல.	I did not imagine this even in a dream.
+emotional	e35	என்ன? அவரு தான் அதை செஞ்சாரா?	What? He was the one who did it?
+emotional	e36	இந்த விலைக்கு இது கிடைக்கும்னு நான் நம்பவே இல்ல.	I did not believe this would be available at this price.
+emotional	e37	இந்த இடத்த பாரு, முழுக்க குப்பையா கிடக்கு.	Look at this place — it is covered in rubbish.
+emotional	e38	அந்த வாசனைய என்னால தாங்க முடியல.	I cannot bear that smell.
+emotional	e39	இப்படி ஒரு வேலைய யாராவது செய்வாங்களா?	Would anyone do a thing like this?
+emotional	e40	அந்த சாப்பாட்ட பார்த்தாலே எனக்கு வேண்டாம்னு ஆகுது.	Just looking at that food puts me off.
+emotional	e41	அவங்க நல்லா இருக்காங்கன்னு கேட்டதுல எனக்கு ஒரு நிம்மதி.	Hearing that they are well gave me some peace.
+emotional	e42	நான் எதிர்பார்த்ததை விட நல்லா நடந்துடுச்சு.	It went better than I expected.
+emotional	e43	அந்த கடிதத்த படிச்சு நான் ரொம்ப நேரம் பேசவே இல்ல.	After reading that letter I did not speak for a long time.
+emotional	e44	இது முடியுமா முடியாதான்னு எனக்கு இன்னும் தெரியல.	I still do not know whether this will work out.
+emotional	e45	அவங்க முகத்த பார்த்தா ஒண்ணும் சரியில்லன்னு தெரியுது.	Looking at their face, it is clear something is wrong.
+emotional	e46	நான் சொன்னது நடந்துடுச்சு, ஆனா எனக்கு சந்தோஷமா இல்ல.	What I said has happened, but I am not happy.
+emotional	e47	எவ்ளோ நாள் ஆனாலும் இதை நான் மறக்க மாட்டேன்.	However many days pass, I will not forget this.
+emotional	e48	அந்த குழந்தை சிரிச்ச சிரிப்பு இன்னும் என் காதுல இருக்கு.	That child's laugh is still in my ears.
+emotional	e49	நாங்க கஷ்டப்பட்டோம், ஆனா இன்னைக்கு அதுக்கு பலன் கிடைச்சுடுச்சு.	We struggled, but today it has borne fruit.
+emotional	e50	இதுக்கு மேல நான் எதுவும் சொல்ல விரும்பல.	I do not wish to say anything more about this.
+emotional	e51	அவன் என்கிட்ட பொய் சொல்லிட்டான், அது தான் வருத்தம்.	He lied to me — that is what hurts.
+emotional	e52	இந்த முடிவு எடுக்க எனக்கு ரொம்ப நாள் ஆச்சு.	It took me a long time to make this decision.
+emotional	e53	அந்த ஊர்ல எல்லாரும் எங்களை நல்லா கவனிச்சுக்கிட்டாங்க.	In that town everyone looked after us well.
+emotional	e54	இப்ப நினைச்சா சிரிப்பு வருது, அப்ப ரொம்ப பயந்துட்டேன்.	Thinking of it now makes me laugh; back then I was terrified.
+emotional	e55	எனக்கு அவங்களை பார்க்கணும்னு ரொம்ப ஆசையா இருக்கு.	I very much want to see them.
+emotional	e56	அவரு சொன்ன வார்த்தை இன்னும் என் மனசுல இருக்கு.	The words he said are still in my mind.
+emotional	e57	இந்த வருஷம் எங்க குடும்பத்துக்கு ரொம்ப கஷ்டமான வருஷம்.	This year has been a very hard year for our family.
+emotional	e58	நான் அங்க போனப்ப யாருமே இல்ல, வீடு காலியா இருந்துச்சு.	When I went there no one was around; the house was empty.
+emotional	e59	அவங்க திரும்ப வருவாங்கன்னு நான் இன்னும் நம்புறேன்.	I still believe they will come back.
+emotional	e60	இது ஒரு சின்ன விஷயம், ஆனா எனக்கு ரொம்ப முக்கியம்.	This is a small thing, but it matters a great deal to me.
+probe	p01	பாத்துக்கலாம்.	"We'll see."	reassurance|threat|dismissal|genuine uncertainty
+probe	p02	சரி.	"All right."	agreement|reluctant acceptance|sarcasm|question
+probe	p03	நல்லா இருக்கு.	"That's good."	genuine praise|sarcasm|polite indifference
+probe	p04	வா.	"Come."	warm invitation|command|challenge
+probe	p05	என்ன?	"What?"	simple question|surprise|annoyance|prompting to continue
+probe	p06	போ.	"Go."	dismissal|playful disbelief|angry order
+probe	p07	தெரியும்.	"I know."	neutral acknowledgement|irritated|excited recognition
+probe	p08	இருங்க.	"Wait."	polite request|warning|hesitation
+probe	p09	ஆமா.	"Yes."	plain agreement|sarcastic agreement|questioning
+probe	p10	முடியும்.	"It can be done."	confidence|challenge|grudging admission
+probe	p11	அப்படியா?	"Is that so?"	genuine interest|disbelief|sarcasm
+probe	p12	நான் பார்த்துக்குறேன்.	"I'll handle it."	reassurance|warning|resignation
+probe	p13	நீ சொல்லு.	"You say it."	invitation|challenge|impatience
+probe	p14	இது தான்.	"This is it."	confirmation|disappointment|triumph
+probe	p15	வேண்டாம்.	"No, don't."	polite refusal|firm refusal|pleading
+probe	p16	உனக்கு தெரியுமா?	"Do you know?"	genuine question|accusation|teasing
+probe	p17	ரொம்ப நன்றி.	"Thank you very much."	sincere thanks|sarcasm|formal politeness
+probe	p18	நல்லது.	"Good."	approval|closing a matter|sarcasm
+probe	p19	நான் வரல.	"I'm not coming."	plain statement|sulking|firm refusal
+probe	p20	இப்பவா?	"Now?"	surprise|reluctance|eagerness
+probe	p21	அவ்ளோதானா?	"Is that all?"	disappointment|relief|disbelief
+probe	p22	சொன்னேன்ல.	"I did say so."	gentle reminder|I-told-you-so|frustration
+probe	p23	பரவால்ல.	"It's fine."	genuine reassurance|hurt pretending to be fine|dismissal
+probe	p24	நீங்க போகலாம்.	"You may go."	polite dismissal|cold dismissal|permission
+probe	p25	எனக்கு புரியுது.	"I understand."	empathy|impatience|resignation
+probe	p26	அது உன் விருப்பம்.	"That's your choice."	genuine deference|washing hands of it|warning
+probe	p27	நீ பெரிய ஆளு.	"You're a big shot."	admiration|sarcasm|teasing
+probe	p28	நான் கேட்டேன்.	"I asked."	plain statement|defending oneself|accusation
+probe	p29	இன்னும் இருக்கு.	"There's more."	anticipation|weariness|warning
+probe	p30	அவங்க வருவாங்க.	"They will come."	reassurance|doubt|warning
+probe	p31	நீ என்ன நினைக்கிற?	"What do you think?"	genuine asking|challenge|rhetorical dismissal
+probe	p32	இது முக்கியம்.	"This is important."	emphasis|pleading|impatience
+probe	p33	எனக்கு நேரம் இல்ல.	"I don't have time."	plain fact|brush-off|apology
+probe	p34	பிறகு பேசலாம்.	"Let's talk later."	friendly|avoidance|warning
+probe	p35	நீ ரெடியா?	"Are you ready?"	encouragement|challenge|impatience
+probe	p36	அதுவும் சரி.	"That's true too."	genuine concession|dismissive|thoughtful
+probe	p37	நான் முதல்ல சொன்னேன்.	"I said it first."	claiming credit|complaining|playful
+probe	p38	விடு.	"Leave it."	letting go|angry|consoling
+probe	p39	நீங்க சொல்றது சரி.	"What you say is right."	sincere agreement|sarcasm|yielding under pressure
+probe	p40	இது முடிஞ்சது.	"This is over."	relief|finality|regret

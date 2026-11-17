@@ -1,0 +1,18 @@
+{
+  "id": "dhevenddra/geetha-c1-check",
+  "title": "geetha-c1-check",
+  "code_file": "c1_contamination.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-c1-contamination",
+    "dhevenddra/geetha-code"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

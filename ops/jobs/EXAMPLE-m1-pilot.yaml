@@ -1,0 +1,19 @@
+# Template only. Not launchable: there is no approved gate and no burn-tracker row,
+# so ops/gpu.py refuses it. The real M1 spec is written when gate M1 is proposed.
+#
+# Prices verified live on 2026-10-26: RTX 4090 Community $0.34/h, A100 80GB PCIe
+# $1.19/h -- exactly what runbook section 2 assumes. Re-quote at each gate.
+run_id: m1-pilot
+gate: M1
+provider: runpod
+gpu_type: NVIDIA GeForce RTX 4090
+image: runpod/pytorch:2.4.0-py3.11-cuda12.4.1
+disk_gb: 100
+max_hours: 4.0
+max_cost_inr: 150.0
+command: bash /workspace/geetha/jobs/m1_pilot.sh
+data_repos:
+  - Dhevenddra/geetha-tts-stagea-private
+  - Dhevenddra/geetha-tts-stageb-private
+checkpoint_repo: Dhevenddra/geetha-ckpt-private
+wandb_project: geetha

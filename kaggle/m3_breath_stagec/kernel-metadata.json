@@ -1,0 +1,20 @@
+{
+  "id": "dhevenddra/geetha-m3-breath-stagec",
+  "title": "geetha-m3-breath-stagec",
+  "code_file": "m3_breath_stagec.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [
+    "dhevenddra/geetha-m2-breath-gen"
+  ],
+  "model_sources": []
+}

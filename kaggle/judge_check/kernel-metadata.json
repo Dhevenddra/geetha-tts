@@ -1,0 +1,19 @@
+{
+  "id": "dhevenddra/geetha-asr-judge-check",
+  "title": "geetha-asr-judge-check",
+  "code_file": "judge_check.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets",
+    "dhevenddra/geetha-judge-check"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

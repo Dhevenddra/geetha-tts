@@ -1,0 +1,19 @@
+{
+  "id": "dhevenddra/geetha-b7-baseline",
+  "title": "geetha-b7-baseline",
+  "code_file": "b7_tts_baseline.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets",
+    "dhevenddra/geetha-b7-prompts"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

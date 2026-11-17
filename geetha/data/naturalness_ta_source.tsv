@@ -1,0 +1,124 @@
+kind	id	text	gloss	expected_events
+# Naturalness-Ta v1 CAPABILITY source, authored for task B4 part 2 (D-020, D-021).
+# Tamil drafted with AI assistance. NEEDS THE OPERATOR'S REVIEW before the vault is frozen:
+# the measurement is only as good as the Tamil, and no downstream rigour repairs a
+# sentence that reads oddly to a Tamil speaker.
+#
+# THREE KINDS, and the difference between the first two is the whole point:
+#
+#  event  - a sentence with a natural place to breathe, sigh or clear the throat, with
+#           the model's OWN non-verbal token sitting at that place. Only the sixteen
+#           tokens in geetha/text/contract.py may appear; C2 measured that all sixteen
+#           are INERT in the base model, so this is the binary capability gap and the
+#           release headline. Rendered twice: `marked` (Geetha) and `stripped` (every
+#           system, including the base model and the three paid APIs).
+#
+#  filler - a hesitation written as Tamil WORDS ("அதாவது", "உம்", "என்ன சொல்ல வரேன்").
+#           There is NO filler token in the contract, so the base model can say these
+#           perfectly well. This is a difference of DEGREE -- does the hesitation sound
+#           like hesitation or like a word being read -- and it is reported as such.
+#           Claiming it inside the binary gap would be overclaiming. expected_events is
+#           0 for every filler item: nothing acoustic is asked for.
+#
+#  clean  - fluent read-aloud Tamil with no invitation to hesitate. A breath or filler
+#           HERE is a defect, and these items give the false-positive rate. Without
+#           them "events per minute" rewards a model that wheezes through every
+#           sentence, which is exactly the unfalsifiable shape D-020 removed from the
+#           realness test.
+#
+# Every prompt must render in ONE pass (<= 180 spoken characters). B7 revision 1
+# truncated 145 of 262 prompts; a chunked naturalness prompt carries a pause the writer
+# did not write.
+#
+# --- event: breath at a clause boundary (where a speaker actually takes one) ---
+event	ev01	ஒரு நிமிடம், <|nv_breath|> நான் யோசித்துச் சொல்கிறேன்.	One minute, [breath] let me think and tell you.	1
+event	ev02	அவர் சொன்னதை கேட்டதும், <|nv_breath|> எனக்கு ஒன்றுமே புரியவில்லை.	When I heard what he said, [breath] I understood nothing.	1
+event	ev03	நேற்று இரவு முழுக்க வேலை, <|nv_breath|> இன்று காலையிலும் அதே வேலை.	Work all last night, [breath] the same work this morning too.	1
+event	ev04	படிக்கட்டு ஏறி வந்தேன், <|nv_breath|> மூன்றாவது மாடி வரை.	I climbed the stairs, [breath] all the way to the third floor.	1
+event	ev05	சரி, <|nv_breath|> இப்போது ஆரம்பிக்கலாம்.	All right, [breath] let us begin now.	1
+event	ev06	அந்த கணக்கை மறுபடியும் பார்த்தேன், <|nv_breath|> எதுவும் சரியாக வரவில்லை.	I checked that account again, [breath] nothing came out right.	1
+event	ev07	இந்த வெயிலில் நடந்து வந்தது, <|nv_breath|> ரொம்ப கஷ்டமாக இருந்தது.	Walking here in this heat, [breath] it was very hard.	1
+event	ev08	கதவை திறந்து பார்த்தேன், <|nv_breath|> உள்ளே யாரும் இல்லை.	I opened the door and looked, [breath] nobody was inside.	1
+# --- event: sigh, where the content earns one ---
+event	ev09	<|nv_sigh|> இதை எப்படி சொல்வது என்றே தெரியவில்லை.	[sigh] I do not even know how to say this.	1
+event	ev10	மறுபடியும் அதே பிரச்சினை. <|nv_sigh|> ஒவ்வொரு மாதமும் இதே கதை.	The same problem again. [sigh] Every month, the same story.	1
+event	ev11	அவரிடம் எத்தனை முறை சொன்னேன். <|nv_sigh|> கேட்பதாக இல்லை.	How many times I told him. [sigh] He will not listen.	1
+event	ev12	<|nv_sigh|> சரி, விட்டுவிடுங்கள். நான் பார்த்துக்கொள்கிறேன்.	[sigh] Fine, leave it. I will handle it.	1
+event	ev13	பஸ் போய்விட்டது. <|nv_sigh|> இன்னும் அரை மணி நேரம் காத்திருக்க வேண்டும்.	The bus has gone. [sigh] Another half hour of waiting.	1
+event	ev14	எல்லாம் முடிந்துவிட்டது. <|nv_sigh|> இப்போது பேசி என்ன பயன்.	It is all over. [sigh] What is the use of talking now.	1
+# --- event: throat clear, before speaking up ---
+event	ev15	<|nv_throat|> உங்கள் கவனத்திற்கு ஒரு விஷயம் சொல்ல வேண்டும்.	[throat clear] I must bring something to your attention.	1
+event	ev16	<|nv_throat|> மன்னிக்கவும், நான் ஒன்று கேட்கலாமா?	[throat clear] Excuse me, may I ask something?	1
+event	ev17	அவர் முடிக்கும் வரை காத்திருந்தேன். <|nv_throat|> பிறகு நான் பேசினேன்.	I waited until he finished. [throat clear] Then I spoke.	1
+event	ev18	<|nv_throat|> இந்த கூட்டத்தை இப்போது தொடங்குகிறோம்.	[throat clear] We are starting this meeting now.	1
+# --- event: laugh, where the content is actually funny ---
+event	ev19	அவன் சொன்ன கதையை கேட்டு <|nv_laugh|> எனக்கு சிரிப்பு அடங்கவில்லை.	Hearing the story he told, [laugh] I could not stop laughing.	1
+event	ev20	நான் சாவியை குளிர்சாதனப் பெட்டியில் வைத்திருந்தேன். <|nv_laugh|> நம்ப முடியவில்லை.	I had put the keys in the fridge. [laugh] Unbelievable.	1
+event	ev21	<|nv_laugh|> அதை நினைத்தாலே இப்போதும் சிரிப்பு வருகிறது.	[laugh] Even thinking of it makes me laugh now.	1
+event	ev22	அவர் குடையை எடுத்துக்கொண்டு போனார், <|nv_laugh|> வெயில் அடித்த நாளில்.	He took an umbrella with him, [laugh] on a day of blazing sun.	1
+# --- event: two events in one sentence (does the model place both, or just the first?) ---
+event	ev23	<|nv_breath|> எனக்கு சொல்லத் தெரியவில்லை, <|nv_sigh|> ஆனால் முயற்சி செய்கிறேன்.	[breath] I do not know how to say it, [sigh] but I will try.	2
+event	ev24	படிக்கட்டு ஏறினேன், <|nv_breath|> கதவை திறந்தேன், <|nv_breath|> உள்ளே யாருமில்லை.	I climbed the stairs, [breath] opened the door, [breath] nobody inside.	2
+event	ev25	<|nv_throat|> ஒரு நிமிடம். <|nv_breath|> இப்போது சொல்கிறேன்.	[throat clear] One minute. [breath] Now I will tell you.	2
+event	ev26	அந்த செய்தியை கேட்டேன். <|nv_sigh|> என்ன சொல்வது. <|nv_sigh|> ஒன்றும் தோன்றவில்லை.	I heard that news. [sigh] What to say. [sigh] Nothing comes to mind.	2
+# --- event: longer turns, where a read-speech model runs out of air ---
+event	ev27	காலையில் எழுந்து, குழந்தைகளை பள்ளிக்கு அனுப்பி, <|nv_breath|> கடைக்குப் போய் சாமான் வாங்கி வந்தேன்.	Got up in the morning, sent the children to school, [breath] went to the shop and bought provisions.	1
+event	ev28	அந்த அறையில் மேசை, நாற்காலி, புத்தக அலமாரி, <|nv_breath|> எல்லாம் அப்படியே இருந்தது.	In that room the table, chair, bookshelf, [breath] everything was just as it was.	1
+event	ev29	ரயில் நிலையத்தில் இறங்கி, ஆட்டோ பிடித்து, <|nv_breath|> வீட்டுக்கு வந்து சேர்ந்தேன்.	Got down at the station, took an auto, [breath] and reached home.	1
+event	ev30	அவர் பேசிக்கொண்டே இருந்தார், நான் கேட்டுக்கொண்டே இருந்தேன், <|nv_sigh|> நேரம் போனதே தெரியவில்லை.	He kept talking, I kept listening, [sigh] I did not notice the time pass.	1
+event	ev31	மின்சாரம் இல்லை, தண்ணீர் இல்லை, <|nv_sigh|> யாரிடம் சென்று சொல்வது.	No power, no water, [sigh] whom does one go and tell.	1
+event	ev32	நான்கு மாடி ஏறி வந்தேன், <|nv_breath|> மூச்சு வாங்குகிறது, <|nv_breath|> ஒரு நிமிடம் உட்காரலாமா?	I climbed four floors, [breath] I am out of breath, [breath] may I sit a minute?	2
+event	ev33	<|nv_breath|> நீண்ட நாட்களுக்குப் பிறகு உங்களை பார்க்கிறேன்.	[breath] I am seeing you after a long time.	1
+event	ev34	வேலை முடிந்தது. <|nv_breath|> இப்போது கொஞ்சம் நிம்மதி.	The work is done. [breath] Now a little relief.	1
+event	ev35	<|nv_sigh|> ஒவ்வொரு நாளும் இதே போராட்டம் தான்.	[sigh] Every day it is this same struggle.	1
+event	ev36	அவள் அழுதுகொண்டே சொன்னாள், <|nv_breath|> நான் ஒன்றும் பேசவில்லை.	She said it while crying, [breath] I said nothing.	1
+# --- filler: hesitation written as Tamil words. No token, no acoustic event expected. ---
+filler	fl01	அதாவது... எனக்கு சரியாக தெரியவில்லை.	That is... I do not exactly know.	0
+filler	fl02	உம்... ஒரு நிமிடம், யோசிக்கிறேன்.	Um... one minute, I am thinking.	0
+filler	fl03	என்ன சொல்ல வருகிறேன் என்றால், இது அவ்வளவு எளிதல்ல.	What I mean to say is, this is not that easy.	0
+filler	fl04	அது... அது வேறு விஷயம், அதை பிறகு பேசலாம்.	That... that is a different matter, we can discuss it later.	0
+filler	fl05	இல்லை இல்லை, நான் சொன்னது அதை அல்ல.	No no, what I said was not that.	0
+filler	fl06	ஆமாம், ஆமாம்... இல்லை, பொறுங்கள். எனக்கு நினைவில்லை.	Yes, yes... no, wait. I do not remember.	0
+filler	fl07	எப்படி சொல்வது... ஒரு வகையில் சரி, ஒரு வகையில் தவறு.	How to put it... right in one way, wrong in another.	0
+filler	fl08	அவர் பெயர்... அவர் பெயர் என்ன... ராமன், ஆமாம் ராமன்.	His name... what is his name... Raman, yes Raman.	0
+filler	fl09	உம், அப்படியா? எனக்கு இது தெரியாது.	Um, is that so? I did not know this.	0
+filler	fl10	நான்... நான் நினைத்தேன் நீங்கள் வரமாட்டீர்கள் என்று.	I... I thought you would not come.	0
+filler	fl11	சரி, அதாவது, நாளை பார்க்கலாம், இல்லையா?	Fine, that is, we will see tomorrow, no?	0
+filler	fl12	எனக்கு... எனக்கு ஒன்றும் சொல்லத் தோன்றவில்லை.	I... nothing comes to me to say.	0
+filler	fl13	அது ஒரு... எப்படி சொல்வது... பழைய கட்டிடம்.	It is a... how to say... old building.	0
+filler	fl14	ஒண்ணு, ரெண்டு... இல்லை, மூன்று பேர் வந்தார்கள்.	One, two... no, three people came.	0
+filler	fl15	நீங்கள் சொல்வது... ஆமாம், புரிகிறது, புரிகிறது.	What you say... yes, I understand, I understand.	0
+filler	fl16	இந்த... இந்த காகிதத்தை எங்கே வைத்தேன்?	This... where did I put this paper?	0
+filler	fl17	அதாவது, அவர் வரவில்லை, அதனால் நாங்கள் காத்திருந்தோம்.	That is, he did not come, so we waited.	0
+filler	fl18	உம்... சரி. நான் பிறகு கூப்பிடுகிறேன்.	Um... all right. I will call later.	0
+filler	fl19	எனக்கு தெரிந்தது என்னவென்றால்... இல்லை, அது முக்கியமில்லை.	What I knew was... no, that is not important.	0
+filler	fl20	அவங்க... அவங்க நேற்று தான் வந்தாங்க.	They... they came only yesterday.	0
+filler	fl21	ஒரு வேளை... இல்லை, நிச்சயமாக அப்படி இல்லை.	Perhaps... no, certainly it is not so.	0
+filler	fl22	இதை... இதை நான் எப்படி விளக்குவது?	This... how do I explain this?	0
+filler	fl23	சரி சரி, அதாவது நாளை காலை பத்து மணி, அப்படித்தானே?	All right, that is, ten tomorrow morning, correct?	0
+filler	fl24	நான் நினைக்கிறேன்... ஆமாம், அதுவே சரி.	I think... yes, that is right.	0
+# --- clean: fluent read-aloud Tamil. An event here is a FALSE POSITIVE. ---
+clean	cl01	தமிழ்நாட்டின் தலைநகரம் சென்னை.	The capital of Tamil Nadu is Chennai.	0
+clean	cl02	இந்த புத்தகம் மேசையின் மேல் உள்ளது.	This book is on the table.	0
+clean	cl03	காவிரி ஆறு தமிழ்நாட்டின் முக்கிய நதி.	The Kaveri is an important river of Tamil Nadu.	0
+clean	cl04	அரசு அறிவிப்பு நாளை வெளியிடப்படும்.	The government announcement will be released tomorrow.	0
+clean	cl05	ரயில் காலை ஆறு மணிக்கு புறப்படுகிறது.	The train departs at six in the morning.	0
+clean	cl06	நூலகம் திங்கள் முதல் வெள்ளி வரை திறந்திருக்கும்.	The library is open from Monday to Friday.	0
+clean	cl07	மாநிலத்தின் மொத்த மக்கள் தொகை ஏழு கோடி.	The total population of the state is seven crore.	0
+clean	cl08	இந்த அறைக்கு இரண்டு ஜன்னல்கள் உள்ளன.	This room has two windows.	0
+clean	cl09	கல்லூரி வளாகம் நகரின் தெற்கே அமைந்துள்ளது.	The college campus is located to the south of the city.	0
+clean	cl10	மருத்துவமனை இருபத்து நான்கு மணி நேரமும் செயல்படுகிறது.	The hospital operates twenty four hours.	0
+clean	cl11	விண்ணப்பத்தை இணையதளத்தில் பூர்த்தி செய்யவும்.	Please complete the application on the website.	0
+clean	cl12	கூட்டம் மாநாட்டு அரங்கில் நடைபெறும்.	The meeting will be held in the conference hall.	0
+clean	cl13	பாடத்திட்டம் மூன்று பகுதிகளாக பிரிக்கப்பட்டுள்ளது.	The syllabus is divided into three parts.	0
+clean	cl14	கடற்கரை சாலை நேற்று முதல் மூடப்பட்டுள்ளது.	The beach road has been closed since yesterday.	0
+clean	cl15	இந்த திட்டம் ஐந்து ஆண்டுகளில் முடிக்கப்படும்.	This project will be completed in five years.	0
+clean	cl16	மாணவர்கள் தேர்வு அறைக்கு சரியான நேரத்தில் வர வேண்டும்.	Students must come to the examination hall on time.	0
+clean	cl17	நகரின் வெப்பநிலை முப்பத்து இரண்டு டிகிரி.	The temperature of the city is thirty two degrees.	0
+clean	cl18	அந்த கோவில் பதினோராம் நூற்றாண்டில் கட்டப்பட்டது.	That temple was built in the eleventh century.	0
+clean	cl19	தபால் நிலையம் சந்தைக்கு அருகில் உள்ளது.	The post office is near the market.	0
+clean	cl20	விமானம் மதியம் ஒரு மணிக்கு வந்து சேரும்.	The flight will arrive at one in the afternoon.	0
+clean	cl21	இந்த வகுப்பில் முப்பது மாணவர்கள் உள்ளனர்.	There are thirty students in this class.	0
+clean	cl22	அறிக்கை அடுத்த வாரம் சமர்ப்பிக்கப்படும்.	The report will be submitted next week.	0
+clean	cl23	பூங்கா காலை ஐந்து மணிக்கு திறக்கப்படுகிறது.	The park opens at five in the morning.	0
+clean	cl24	தண்ணீர் விநியோகம் மாலை நான்கு மணி வரை இருக்கும்.	The water supply will be available until four in the evening.	0

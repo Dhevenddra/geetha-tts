@@ -1,0 +1,20 @@
+{
+  "id": "dhevenddra/geetha-m2pre-pilot-eval",
+  "title": "geetha-m2pre-pilot-eval",
+  "code_file": "m2pre_pilot_eval.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets",
+    "dhevenddra/geetha-b7-prompts",
+    "dhevenddra/geetha-m2pre-subset"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}

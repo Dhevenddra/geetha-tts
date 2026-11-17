@@ -1,0 +1,20 @@
+{
+  "id": "dhevenddra/geetha-m2-levers",
+  "title": "geetha-m2-levers",
+  "code_file": "m2_levers.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "dhevenddra/geetha-code",
+    "dhevenddra/geetha-secrets",
+    "dhevenddra/geetha-b7-prompts",
+    "dhevenddra/geetha-m2pre-subset"
+  ],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": []
+}
